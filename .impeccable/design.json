@@ -1,0 +1,289 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-30T00:00:00Z",
+  "title": "Design System: LukeDoesMaths",
+  "extensions": {
+    "colorMeta": {
+      "terracotta": {
+        "role": "primary",
+        "displayName": "Warm Terracotta",
+        "canonical": "#bf4d28",
+        "tonalRamp": [
+          "#3d1a0d",
+          "#5c260f",
+          "#7d3316",
+          "#9e3f1d",
+          "#bf4d28",
+          "#d97a52",
+          "#eba98a",
+          "#f7d3c0"
+        ]
+      },
+      "terracotta-light": {
+        "role": "primary-tint",
+        "displayName": "Terracotta Light",
+        "canonical": "#f4e7d7",
+        "tonalRamp": [
+          "#a8672e",
+          "#c07d42",
+          "#d69660",
+          "#e5b083",
+          "#f4e7d7",
+          "#f7edE0",
+          "#faf3ea",
+          "#fdf9f4"
+        ]
+      },
+      "chalkboard-teal": {
+        "role": "secondary",
+        "displayName": "Chalkboard Teal",
+        "canonical": "#20443f",
+        "tonalRamp": [
+          "#0a1615",
+          "#123029",
+          "#17362f",
+          "#20443f",
+          "#2f6259",
+          "#4a8a7d",
+          "#7fb6ab",
+          "#c3e2dc"
+        ]
+      },
+      "burnished-gold": {
+        "role": "tertiary",
+        "displayName": "Burnished Gold",
+        "canonical": "#c98a26",
+        "tonalRamp": [
+          "#3d2a0b",
+          "#5c3f10",
+          "#7d5416",
+          "#a06d1e",
+          "#c98a26",
+          "#dba756",
+          "#ecc98f",
+          "#f8e6c8"
+        ]
+      },
+      "ink": {
+        "role": "neutral-text",
+        "displayName": "Ink",
+        "canonical": "#26221d"
+      },
+      "muted": {
+        "role": "neutral-text-secondary",
+        "displayName": "Muted",
+        "canonical": "#6f695f"
+      },
+      "cream-bg": {
+        "role": "neutral-bg",
+        "displayName": "Cream Paper",
+        "canonical": "#fdfbf6"
+      },
+      "cream-bg-soft": {
+        "role": "neutral-bg-alt",
+        "displayName": "Soft Cream",
+        "canonical": "#f4eee1"
+      },
+      "sand-border": {
+        "role": "neutral-border",
+        "displayName": "Sand Border",
+        "canonical": "#e5dcc7"
+      },
+      "terracotta-deep": {
+        "role": "primary-deep",
+        "displayName": "Terracotta Deep",
+        "canonical": "#a8421f",
+        "tonalRamp": [
+          "#36150a",
+          "#511f0f",
+          "#6d2a14",
+          "#8a351a",
+          "#a8421f",
+          "#c96a44",
+          "#e0a289",
+          "#f4d6c8"
+        ]
+      },
+      "burnished-gold-deep": {
+        "role": "tertiary-text",
+        "displayName": "Burnished Gold Deep",
+        "canonical": "#8f6119",
+        "tonalRamp": [
+          "#2e1f08",
+          "#45300c",
+          "#5d4011",
+          "#765015",
+          "#8f6119",
+          "#b58840",
+          "#d6b47e",
+          "#efdcbc"
+        ]
+      },
+      "burnished-gold-light": {
+        "role": "tertiary-hover",
+        "displayName": "Burnished Gold Light",
+        "canonical": "#dda63f",
+        "tonalRamp": [
+          "#3f2f0d",
+          "#5e4715",
+          "#7e5f1d",
+          "#9e7726",
+          "#c08f30",
+          "#dda63f",
+          "#ebc781",
+          "#f8e7c4"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero headline only."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section H2 titles."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Card and component H3s."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "All paragraph copy."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Eyebrows, nav links, buttons, tags."
+      }
+    },
+    "shadows": [
+      {
+        "name": "paper-lift",
+        "value": "0 6px 18px rgba(38,34,29,0.09)",
+        "purpose": "The only shadow in the system; used on the hero card and on subject/pricing cards."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-standard",
+        "value": "0.15s ease",
+        "purpose": "Button and card hover/color transitions."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "grid-3-collapse",
+        "value": "850px"
+      },
+      {
+        "name": "about-collapse",
+        "value": "800px"
+      },
+      {
+        "name": "nav-collapse",
+        "value": "800px"
+      },
+      {
+        "name": "pricing-collapse",
+        "value": "750px"
+      },
+      {
+        "name": "hero-h1-shrink",
+        "value": "640px"
+      },
+      {
+        "name": "steps-single-col",
+        "value": "520px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Filled terracotta CTA; deepens to Terracotta Deep on hover rather than emptying, so it never loses prominence at the moment of intent.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">Book a free intro chat</a>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; gap: 8px; padding: 13px 28px; border-radius: 3px; font-family: 'Work Sans', system-ui, sans-serif; font-weight: 600; font-size: 0.92rem; text-transform: uppercase; letter-spacing: 0.04em; background: #bf4d28; color: #fff; border: 1.5px solid #bf4d28; text-decoration: none; transition: background 0.15s ease, color 0.15s ease; } .ds-btn-primary:hover { background: #a8421f; border-color: #a8421f; color: #fff; } .ds-btn-primary:focus-visible { outline: 2px solid #bf4d28; outline-offset: 3px; }"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Transparent teal-bordered CTA; inverts to solid teal on hover.",
+      "html": "<a class=\"ds-btn-outline\" href=\"#\">See subjects</a>",
+      "css": ".ds-btn-outline { display: inline-flex; align-items: center; gap: 8px; padding: 13px 28px; border-radius: 3px; font-family: 'Work Sans', system-ui, sans-serif; font-weight: 600; font-size: 0.92rem; text-transform: uppercase; letter-spacing: 0.04em; background: transparent; color: #20443f; border: 1.5px solid #20443f; text-decoration: none; transition: background 0.15s ease, color 0.15s ease; } .ds-btn-outline:hover { background: #20443f; color: #fff; } .ds-btn-outline:focus-visible { outline: 2px solid #bf4d28; outline-offset: 3px; }"
+    },
+    {
+      "name": "Subject Level Tabs",
+      "kind": "custom",
+      "refersTo": "card",
+      "description": "CSS-only level selector (no JS): four radios styled as tabs over a white panel. Defaults to Leaving Certificate, the highest-value segment.",
+      "html": "<fieldset class=\"ds-tabs\"><div class=\"ds-tablist\"><span class=\"ds-tab\">Junior Cycle</span><span class=\"ds-tab ds-tab--on\">Leaving Certificate</span></div><div class=\"ds-panel\"><span class=\"ds-mark\">v&sup2; = u&sup2; + 2as</span><p class=\"ds-panel-body\">Maths, Applied Maths and Physics (Ordinary &amp; Higher).</p></div></fieldset>",
+      "css": ".ds-tabs { border: 1px solid #e5dcc7; border-radius: 10px; overflow: hidden; background: #fff; padding: 0; margin: 0; } .ds-tablist { display: flex; flex-wrap: wrap; background: #f4eee1; border-bottom: 1px solid #e5dcc7; } .ds-tab { cursor: pointer; padding: 16px 22px; font-family: 'Work Sans', sans-serif; font-weight: 600; font-size: 0.9rem; color: #6f695f; border-bottom: 3px solid transparent; margin-bottom: -1px; transition: color .15s ease, border-color .15s ease; } .ds-tab:hover { color: #20443f; } .ds-tab--on { color: #bf4d28; border-bottom-color: #bf4d28; } .ds-panel { padding: 32px; } .ds-mark { display: inline-block; font-family: 'Petrona', serif; font-style: italic; font-weight: 600; font-size: 1.4rem; color: #bf4d28; margin-bottom: 18px; } .ds-panel-body { font-family: 'Work Sans', sans-serif; font-size: 0.95rem; color: #6f695f; }"
+    },
+    {
+      "name": "Pricing Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "White card with optional featured state (terracotta border + badge), used for the 1-1/Group comparison.",
+      "html": "<div class=\"ds-pricing-card ds-pricing-card--featured\"><span class=\"ds-badge\">Most personalised</span><h3 class=\"ds-card-title\">1-1 Grinds</h3><div class=\"ds-price\">Fully tailored to you</div></div>",
+      "css": ".ds-pricing-card { background: #fff; border-radius: 10px; border: 1px solid #e5dcc7; padding: 34px; box-shadow: 0 6px 18px rgba(38,34,29,0.09); position: relative; } .ds-pricing-card--featured { border: 2px solid #bf4d28; } .ds-badge { position: absolute; top: -14px; left: 34px; background: #bf4d28; color: #fff; font-size: 0.72rem; font-weight: 600; padding: 5px 14px; border-radius: 3px; text-transform: uppercase; letter-spacing: 0.04em; } .ds-price { font-family: 'Work Sans', sans-serif; font-size: 1rem; color: #bf4d28; font-weight: 700; margin-bottom: 18px; }"
+    },
+    {
+      "name": "Tag",
+      "kind": "chip",
+      "refersTo": "tag",
+      "description": "Small informational chip used for subject levels and credentials.",
+      "html": "<span class=\"ds-tag\">Leaving Cert</span>",
+      "css": ".ds-tag { background: #fff; border: 1px solid #e5dcc7; font-size: 0.76rem; padding: 5px 12px; border-radius: 3px; color: #6f695f; font-weight: 500; display: inline-block; }"
+    },
+    {
+      "name": "Navigation Bar",
+      "kind": "nav",
+      "description": "Sticky, translucent-blurred header with uppercase label links and a single teal outline 'Get in touch' CTA; mobile collapses behind a checkbox-driven hamburger with no JS dependency.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-logo\">LukeDoes<span>Maths</span></a><div class=\"ds-nav-links\"><a href=\"#\">Subjects</a><a href=\"#\" class=\"ds-nav-whatsapp\">Get in touch</a></div></nav>",
+      "css": ".ds-nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 24px; background: rgba(255,255,255,0.9); backdrop-filter: saturate(180%) blur(10px); border-bottom: 1px solid #e5dcc7; } .ds-logo { font-family: 'Petrona', serif; font-weight: 600; font-size: 1.35rem; color: #20443f; font-style: italic; } .ds-logo span { color: #bf4d28; } .ds-nav-links { display: flex; gap: 32px; align-items: center; } .ds-nav-links a { font-family: 'Work Sans', sans-serif; font-weight: 600; font-size: 0.92rem; color: #20443f; text-transform: uppercase; letter-spacing: 0.04em; text-decoration: none; } .ds-nav-links a:hover { color: #bf4d28; } .ds-nav-whatsapp { background: transparent; color: #20443f; padding: 10px 22px; border-radius: 3px; border: 1.5px solid #20443f; transition: background .15s ease, color .15s ease; } .ds-nav-whatsapp:hover { background: #20443f; color: #fff !important; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Luke Does Maths",
+    "overview": "The system is named plainly after the brand itself: no borrowed metaphor, no aesthetic pretense — the design should read as direct and personal as the name. The mood is warm, precise, and unhurried. Nothing on the page rushes the visitor toward a decision; typography, color, and pacing all signal that the person behind this site is calm, capable, and has nothing to prove through visual noise. Credentials speak for themselves; the design doesn't need to shout alongside them.\n\nThe palette is warm-editorial (cream paper tones, terracotta, deep teal, gold) rather than cool-corporate. Layout is generous and airy — full-width sections with consistent breathing room — never dense or app-like. The one confirmed anti-reference: this must not read as a generic SaaS/startup template. Every recurring pattern (card grids, eyebrow labels, pricing tiers) needs enough specific, warm detail that it couldn't be mistaken for an unrelated product's site with the copy swapped out.",
+    "keyCharacteristics": [
+      "Warm cream paper backgrounds, never stark white or cool grey",
+      "One confident accent (terracotta) used sparingly for action and emphasis; deep teal carries structural/heading weight",
+      "Generous whitespace and large section padding; nothing feels cramped or transactional",
+      "Soft, gentle elevation (light paper-lift shadows), never heavy or glossy",
+      "Warm, approachable interactive states — soft hovers, no jarring transitions"
+    ],
+    "rules": [
+      {
+        "name": "The One Accent Rule",
+        "body": "Warm Terracotta is the only color that ever fills a primary call-to-action outside the dark contact band. If a new component needs a second \"loud\" color, it's a sign the composition needs rethinking, not a new token.",
+        "section": "colors"
+      },
+      {
+        "name": "The Italic Accent Rule",
+        "body": "Petrona's italic is reserved for small, personal touches only — the logo mark and the \"How it works\" step numerals — never for body copy or headings at large sizes, where it would read as overwrought.",
+        "section": "typography"
+      },
+      {
+        "name": "The Lift-on-Purpose Rule",
+        "body": "Shadow only appears on surfaces the visitor is meant to read as a discrete, liftable object (a card), never on structural chrome like the header or footer.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do keep Warm Terracotta rare — one primary action's worth of visual weight per screen, per the One Accent Rule.",
+      "Do use Chalkboard Teal for anything structural (headings, nav, outline buttons) rather than introducing a second neutral-dark color.",
+      "Do keep every surface warm-toned; no pure white, pure black, or cool grey anywhere in the system.",
+      "Do give every card the same 10px/Paper-Lift treatment so the system reads as one family, not a set of one-off components."
+    ],
+    "donts": [
+      "Don't add a second competing accent color; if a new section needs emphasis, reuse terracotta or gold rather than introducing a new hue.",
+      "Don't let the display serif (Petrona) appear at body-text sizes or in long-form copy — it's a heading/accent voice only.",
+      "Don't reach for a generic SaaS/startup layout pattern (icon-in-a-tinted-square feature grid, gradient-circle avatar, unlabeled stat row) without adding a detail specific to this brand — that's the exact failure mode the critique flagged and this system exists to avoid."
+    ]
+  }
+}

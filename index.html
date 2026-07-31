@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en-IE">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LukeDoesMaths | Online Maths, Applied Maths & Physics Grinds</title>
+<meta name="description" content="Online 1-1 and group grinds in Maths, Applied Maths and Physics for Leaving Cert, Junior Cycle and undergraduate students.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,500;0,600;0,700;1,600&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --deep-teal:#20443f;
+    --rust:#bf4d28;
+    --rust-deep:#a8421f;
+    --rust-light:#f4e7d7;
+    --gold:#c98a26;
+    --gold-deep:#8f6119;
+    --gold-light:#dda63f;
+    --ink:#26221d;
+    --muted:#6f695f;
+    --bg:#fdfbf6;
+    --bg-soft:#f4eee1;
+    --border:#e5dcc7;
+    --radius:10px;
+    --shadow:0 6px 18px rgba(38,34,29,0.09);
+    --maxw:1120px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Work Sans',system-ui,sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.logo{font-family:'Petrona',serif;font-weight:600;}
+  a{text-decoration:none;color:inherit;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+  section{padding:80px 0;}
+  @media (max-width:640px){section{padding:56px 0;}}
+
+  /* NAV */
+  header{
+    position:sticky;top:0;z-index:100;
+    background:rgba(255,255,255,0.9);
+    backdrop-filter:saturate(180%) blur(10px);
+    border-bottom:1px solid var(--border);
+  }
+  nav{
+    max-width:var(--maxw);margin:0 auto;padding:16px 24px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .logo{font-weight:600;font-size:1.35rem;color:var(--deep-teal);letter-spacing:-0.3px;font-style:italic;}
+  .logo span{color:var(--rust);}
+  .nav-links{display:flex;gap:32px;align-items:center;}
+  .nav-links a{font-weight:600;font-size:0.92rem;color:var(--deep-teal);text-transform:uppercase;letter-spacing:0.04em;}
+  .nav-links a:hover{color:var(--rust);}
+  .nav-links a:focus-visible,.btn:focus-visible{outline:2px solid var(--rust);outline-offset:3px;border-radius:3px;}
+  .nav-whatsapp{
+    background:transparent;color:var(--deep-teal);padding:10px 22px;border-radius:3px;
+    font-weight:600;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.04em;
+    border:1.5px solid var(--deep-teal);transition:background .15s ease,color .15s ease;
+  }
+  .nav-whatsapp:hover{background:var(--deep-teal);color:#fff;}
+  .nav-toggle{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;}
+  .menu-btn{display:none;font-size:1.6rem;line-height:1;color:var(--deep-teal);cursor:pointer;}
+  .nav-toggle:focus-visible + .menu-btn{outline:2px solid var(--rust);outline-offset:3px;border-radius:3px;}
+  @media (max-width:800px){
+    .nav-links{position:fixed;top:64px;left:0;right:0;background:#fff;flex-direction:column;
+      padding:20px 24px;gap:18px;border-bottom:1px solid var(--border);display:none;}
+    .nav-toggle:checked ~ .nav-links{display:flex;}
+    .menu-btn{display:block;}
+  }
+
+  /* HERO */
+  .hero{
+    background:linear-gradient(180deg,var(--rust-light) 0%, #ffffff 100%);
+    padding:90px 0 70px;
+  }
+  .hero .wrap{display:grid;grid-template-columns:1.1fr 0.9fr;gap:48px;align-items:center;}
+  @media (max-width:850px){.hero .wrap{grid-template-columns:1fr;}}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;color:var(--rust-deep);
+    font-weight:700;font-size:0.78rem;margin-bottom:18px;text-transform:uppercase;letter-spacing:0.12em;
+  }
+  .eyebrow::before{content:"";display:inline-block;width:22px;height:2px;background:var(--rust-deep);}
+  .hero h1{font-size:2.9rem;line-height:1.14;color:var(--deep-teal);margin-bottom:18px;letter-spacing:-0.5px;font-weight:600;}
+  @media (max-width:640px){.hero h1{font-size:2.1rem;}}
+  .hero p.lead{font-size:1.1rem;color:var(--muted);margin-bottom:28px;max-width:520px;}
+  .btn-row{display:flex;gap:14px;flex-wrap:wrap;}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border-radius:3px;
+    font-weight:600;font-size:0.92rem;transition:background .15s ease, color .15s ease, border-color .15s ease;
+    text-transform:uppercase;letter-spacing:0.04em;
+  }
+  .btn-primary{background:var(--rust);color:#fff;border:1.5px solid var(--rust);}
+  .btn-primary:hover{background:var(--rust-deep);border-color:var(--rust-deep);color:#fff;}
+  .btn-outline{background:transparent;color:var(--deep-teal);border:1.5px solid var(--deep-teal);}
+  .btn-outline:hover{background:var(--deep-teal);color:#fff;}
+  .hero-stats{display:flex;gap:28px;margin-top:36px;flex-wrap:wrap;}
+  .stat b{display:block;font-size:1.5rem;color:var(--deep-teal);font-family:'Petrona',serif;font-weight:600;}
+  .stat span{font-size:0.85rem;color:var(--muted);}
+  .hero-card{
+    position:relative;overflow:hidden;
+    background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:36px 32px 32px;
+    border:1px solid var(--border);
+    transition:transform .2s ease,box-shadow .2s ease;
+  }
+  .hero-card::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:5px;
+    background:linear-gradient(90deg,var(--rust) 0%,var(--gold) 60%,var(--deep-teal) 100%);
+  }
+  .hero-card:hover{transform:translateY(-4px);box-shadow:0 14px 32px rgba(38,34,29,0.14);}
+  .hero-card-eyebrow{
+    display:inline-block;color:var(--gold-deep);font-weight:700;font-size:0.72rem;
+    text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;
+  }
+  .hero-card h3{color:var(--deep-teal);margin-bottom:16px;font-size:1.2rem;}
+  .hero-card ul{list-style:none;display:flex;flex-direction:column;}
+  .hero-card li{
+    display:flex;gap:12px;align-items:flex-start;font-size:0.95rem;color:var(--ink);
+    padding:12px 0;border-bottom:1px solid var(--border);
+  }
+  .hero-card li:last-of-type{border-bottom:none;padding-bottom:8px;}
+  .check{
+    flex-shrink:0;width:20px;height:20px;border-radius:50%;background:var(--gold);margin-top:1px;
+    color:#fff;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;
+  }
+
+  /* SUBJECTS */
+  .section-head{text-align:center;max-width:600px;margin:0 auto 48px;}
+  .section-head .eyebrow{margin-left:auto;margin-right:auto;}
+  .section-head h2{font-size:2rem;color:var(--deep-teal);margin-bottom:12px;letter-spacing:-0.5px;}
+  .section-head p{color:var(--muted);}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+  .subject-tabs{border:1px solid var(--border);border-radius:10px;overflow:hidden;background:#fff;padding:0;margin:0;min-width:0;}
+  .subject-tab-input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;}
+  .subject-tablist{display:flex;flex-wrap:wrap;background:var(--bg-soft);border-bottom:1px solid var(--border);}
+  .subject-tab{
+    cursor:pointer;padding:16px 22px;font-weight:600;font-size:0.9rem;color:var(--muted);
+    border-bottom:3px solid transparent;margin-bottom:-1px;transition:color .15s ease,border-color .15s ease;
+  }
+  .subject-tab:hover{color:var(--deep-teal);}
+  #tab-jc:checked ~ .subject-tablist label[for="tab-jc"],
+  #tab-ty:checked ~ .subject-tablist label[for="tab-ty"],
+  #tab-lc:checked ~ .subject-tablist label[for="tab-lc"],
+  #tab-ug:checked ~ .subject-tablist label[for="tab-ug"]{
+    color:var(--rust);border-bottom-color:var(--rust);
+  }
+  #tab-jc:focus-visible ~ .subject-tablist label[for="tab-jc"],
+  #tab-ty:focus-visible ~ .subject-tablist label[for="tab-ty"],
+  #tab-lc:focus-visible ~ .subject-tablist label[for="tab-lc"],
+  #tab-ug:focus-visible ~ .subject-tablist label[for="tab-ug"]{
+    outline:2px solid var(--rust);outline-offset:-2px;
+  }
+  .subject-panel{display:none;padding:32px;}
+  #tab-jc:checked ~ #panel-jc,
+  #tab-ty:checked ~ #panel-ty,
+  #tab-lc:checked ~ #panel-lc,
+  #tab-ug:checked ~ #panel-ug{display:block;}
+  .subject-mark{
+    display:inline-block;font-family:'Petrona',serif;font-style:italic;font-weight:600;font-size:1.4rem;
+    line-height:1.3;margin-bottom:18px;
+  }
+  #panel-jc .subject-mark{color:var(--deep-teal);}
+  #panel-ty .subject-mark{color:var(--gold-deep);}
+  #panel-lc .subject-mark{color:var(--rust);}
+  #panel-ug .subject-mark{color:var(--deep-teal);}
+  .subject-panel p{color:var(--muted);font-size:0.95rem;margin-bottom:14px;}
+  @media (max-width:640px){
+    .subject-tab{padding:12px 14px;font-size:0.82rem;}
+    .subject-panel{padding:24px;}
+  }
+  .tag-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;}
+  .tag{background:#fff;border:1px solid var(--border);font-size:0.76rem;padding:5px 12px;border-radius:3px;color:var(--muted);font-weight:500;}
+
+  /* HOW IT WORKS */
+  #how{padding:48px 0;}
+  #how .section-head{margin-bottom:28px;}
+  .steps{display:flex;flex-wrap:wrap;gap:14px 32px;justify-content:center;}
+  .step{display:flex;align-items:flex-start;gap:10px;text-align:left;flex:1 1 200px;max-width:240px;}
+  .step .num{
+    flex-shrink:0;font-family:'Petrona',serif;font-style:italic;font-weight:600;font-size:1.2rem;color:var(--rust);
+    line-height:1.3;
+  }
+  .step h3{font-size:0.95rem;color:var(--deep-teal);margin-bottom:2px;}
+  .step p{font-size:0.85rem;color:var(--muted);line-height:1.4;}
+  @media (max-width:520px){.steps{flex-direction:column;align-items:center;}.step{max-width:320px;}}
+  @media (max-width:640px){#how{padding:32px 0;}}
+
+  /* FORMAT / PRICING */
+  .bg-soft{background:var(--bg-soft);}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  @media (max-width:750px){.grid2{grid-template-columns:1fr;}}
+  .format-card{
+    background:#fff;border-radius:var(--radius);border:1px solid var(--border);padding:34px;
+    box-shadow:var(--shadow);position:relative;
+  }
+  .format-card.featured{border:2px solid var(--rust);}
+  .badge{
+    position:absolute;top:-14px;left:34px;background:var(--rust);color:#fff;font-size:0.72rem;
+    font-weight:600;padding:5px 14px;border-radius:3px;text-transform:uppercase;letter-spacing:0.04em;
+  }
+  .format-card h3{font-size:1.3rem;color:var(--deep-teal);margin-bottom:6px;}
+  .format-card .price{font-family:'Petrona',serif;font-size:2.2rem;font-weight:600;color:var(--rust);margin-bottom:6px;line-height:1;}
+  .format-card .price .price-unit{font-family:'Work Sans',system-ui,sans-serif;font-size:0.85rem;font-weight:600;color:var(--muted);margin-left:6px;}
+  .format-card .perk{font-size:0.85rem;color:var(--gold-deep);font-weight:700;margin-bottom:18px;}
+  .format-card ul{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:24px;}
+  .format-card li{display:flex;gap:10px;align-items:flex-start;font-size:0.93rem;color:var(--ink);}
+  .note{font-size:0.85rem;color:var(--muted);text-align:center;margin-top:24px;}
+  .fit-line{font-size:0.86rem;color:var(--muted);font-style:italic;margin-bottom:18px;}
+
+  /* ABOUT */
+  .about-wrap{display:grid;grid-template-columns:0.8fr 1.2fr;gap:48px;align-items:center;}
+  @media (max-width:800px){.about-wrap{grid-template-columns:1fr;}}
+  .avatar{
+    display:block;width:100%;height:auto;aspect-ratio:1/1;max-width:260px;
+    border-radius:10px;object-fit:cover;margin:0 auto;
+  }
+  .about-text h2{font-size:1.8rem;color:var(--deep-teal);margin-bottom:14px;}
+  .about-text p{color:var(--muted);margin-bottom:14px;}
+  .credentials{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;}
+  .credentials .tag{background:var(--rust-light);border-color:transparent;color:var(--deep-teal);font-weight:600;}
+
+  /* CONTACT */
+  .contact{
+    background:var(--deep-teal);color:#fff;border-radius:10px;
+    padding:56px 40px;text-align:center;
+  }
+  .contact h2{font-size:2rem;margin-bottom:12px;color:#fff;}
+  .contact p{color:#d6e2dd;max-width:520px;margin:0 auto 32px;}
+  .contact .btn-row{justify-content:center;}
+  .contact .btn-primary{background:var(--gold);border-color:var(--gold);color:var(--ink);}
+  .contact .btn-primary:hover{background:var(--gold-light);border-color:var(--gold-light);color:var(--ink);}
+  .contact .btn-outline{background:transparent;color:#fff;border-color:rgba(255,255,255,0.4);}
+  .contact .btn-outline:hover{background:#fff;color:var(--deep-teal);}
+
+  /* FOOTER */
+  footer{padding:36px 0;border-top:1px solid var(--border);}
+  footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+  footer p{color:var(--muted);font-size:0.85rem;}
+  footer .flinks{display:flex;gap:20px;}
+  footer .flinks a{font-size:0.85rem;color:var(--muted);}
+  footer .flinks a:hover{color:var(--rust);}
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="#top" class="logo">LukeDoes<span>Maths</span></a>
+    <input type="checkbox" id="navToggle" class="nav-toggle" aria-label="Toggle menu">
+    <label for="navToggle" class="menu-btn" aria-hidden="true">&#9776;</label>
+    <div class="nav-links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#subjects">Subjects</a>
+      <a href="#how">How it works</a>
+      <a href="#formats">1-1 &amp; Group</a>
+      <a href="https://wa.me/353864002436?text=Hi%20Luke%2C%20I%27m%20interested%20in%20maths%20grinds!" class="nav-whatsapp">Get in touch</a>
+    </div>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">Online grinds &middot; 1-1 &amp; small groups</span>
+        <h1>Maths, Applied Maths &amp; Physics grinds that actually make sense.</h1>
+        <p class="lead">Helping second level and undergraduate students build real understanding and exam confidence, all online, from wherever you are.</p>
+        <div class="btn-row">
+          <a href="#contact" class="btn btn-primary">Book a free intro chat</a>
+          <a href="#subjects" class="btn btn-outline">See subjects</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><b>1-1 &amp; Group</b><span>Flexible formats</span></div>
+          <div class="stat"><b>100% Online</b><span>Learn from anywhere</span></div>
+          <div class="stat"><b>Junior Cycle&ndash;Undergrad</b><span>All levels covered</span></div>
+        </div>
+      </div>
+      <div class="hero-card">
+        <span class="hero-card-eyebrow">Included with every grind</span>
+        <h3>What you get</h3>
+        <ul>
+          <li><span class="check" aria-hidden="true">&#10003;</span> Tailored lessons, you drive the direction each session</li>
+          <li><span class="check" aria-hidden="true">&#10003;</span> Lesson recordings, to speed up your revision down the line</li>
+          <li><span class="check" aria-hidden="true">&#10003;</span> Notes, online resources and exam advice</li>
+          <li><span class="check" aria-hidden="true">&#10003;</span> Flexible scheduling</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="bg-soft">
+    <div class="wrap">
+      <div class="about-wrap">
+        <img class="avatar" src="images/luke.jpg" alt="Luke, founder of LukeDoesMaths" width="600" height="600">
+        <div class="about-text">
+          <span class="eyebrow">About your tutor</span>
+          <h2>Hi, I'm Luke</h2>
+          <p>I hold a first class honours degree in Theoretical Physics from Trinity College Dublin, where I was awarded a Foundation Scholarship. In the Leaving Cert I achieved 7 H1s, including 100% in Higher Level Maths, so I know exactly what it takes to get there.</p>
+          <p>I've been tutoring Maths, Applied Maths and Physics for 5 years, helping students at every level build real understanding rather than just memorising steps. I'm also a qualified sailing and windsurfing instructor, and have taught on beaches all over the world, so I know a thing or two about breaking down a tricky skill into something manageable, whatever the subject.</p>
+          <div class="credentials">
+            <span class="tag">1st Class Hons, Theoretical Physics (TCD)</span>
+            <span class="tag">TCD Foundation Scholar</span>
+            <span class="tag">7 H1s in the Leaving Cert</span>
+            <span class="tag">100% in LC Higher Maths</span>
+            <span class="tag">5 years tutoring experience</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUBJECTS -->
+  <section id="subjects">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Subjects</span>
+        <h2>What I teach</h2>
+        <p>From Junior Cycle right through to first-year undergrad, tailored to where you're at.</p>
+      </div>
+      <fieldset class="subject-tabs">
+        <legend class="sr-only">Level of study</legend>
+        <input type="radio" name="subject-level" id="tab-jc" class="subject-tab-input" aria-controls="panel-jc">
+        <input type="radio" name="subject-level" id="tab-ty" class="subject-tab-input" aria-controls="panel-ty">
+        <input type="radio" name="subject-level" id="tab-lc" class="subject-tab-input" aria-controls="panel-lc" checked>
+        <input type="radio" name="subject-level" id="tab-ug" class="subject-tab-input" aria-controls="panel-ug">
+
+        <div class="subject-tablist">
+          <label for="tab-jc" class="subject-tab" id="label-jc">Junior Cycle</label>
+          <label for="tab-ty" class="subject-tab" id="label-ty">Transition Year</label>
+          <label for="tab-lc" class="subject-tab" id="label-lc">Leaving Certificate</label>
+          <label for="tab-ug" class="subject-tab" id="label-ug">Undergraduate</label>
+        </div>
+
+        <div class="subject-panel" id="panel-jc" role="group" aria-labelledby="label-jc">
+          <div class="subject-mark" aria-hidden="true">2x + 3 = 11</div>
+          <p>Building solid fundamentals in Maths for the Junior Cycle state exams.</p>
+          <div class="tag-row"><span class="tag">Maths</span></div>
+        </div>
+        <div class="subject-panel" id="panel-ty" role="group" aria-labelledby="label-ty">
+          <div class="subject-mark" aria-hidden="true">5th Year &rarr;</div>
+          <p>Keeping Maths skills sharp during TY and bridging smoothly into 5th year.</p>
+          <div class="tag-row"><span class="tag">Maths</span></div>
+        </div>
+        <div class="subject-panel" id="panel-lc" role="group" aria-labelledby="label-lc">
+          <div class="subject-mark" aria-hidden="true">v<sup>2</sup> = u<sup>2</sup> + 2as</div>
+          <p>Maths, Applied Maths and Physics (Ordinary &amp; Higher), covering exam technique, past papers, and real understanding.</p>
+          <div class="tag-row"><span class="tag">Maths</span><span class="tag">Applied Maths</span><span class="tag">Physics</span></div>
+        </div>
+        <div class="subject-panel" id="panel-ug" role="group" aria-labelledby="label-ug">
+          <div class="subject-mark" aria-hidden="true">&int; f(x) dx</div>
+          <p>First-year foundation modules in Maths and Physics.</p>
+          <div class="tag-row"><span class="tag">Maths</span><span class="tag">Physics</span></div>
+        </div>
+      </fieldset>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how" class="bg-soft">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Getting started</span>
+        <h2>How it works</h2>
+        <p>Simple, no-pressure process to get you set up.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="num" aria-hidden="true">1</div>
+          <div class="step-copy">
+            <h3>Get in touch</h3>
+            <p>Message your subject and level.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="num" aria-hidden="true">2</div>
+          <div class="step-copy">
+            <h3>Free intro chat</h3>
+            <p>We figure out the right fit.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="num" aria-hidden="true">3</div>
+          <div class="step-copy">
+            <h3>Book sessions</h3>
+            <p>Pick times that suit you.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="num" aria-hidden="true">4</div>
+          <div class="step-copy">
+            <h3>Learn online</h3>
+            <p>Join live, materials included.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORMATS -->
+  <section id="formats">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Pricing</span>
+        <h2>1-1 or Group Grinds</h2>
+        <p>Simple, transparent rates, whichever suits your learning style.</p>
+      </div>
+      <div class="grid2">
+        <div class="format-card featured">
+          <span class="badge">Most personalised</span>
+          <h3>1-1 Grinds</h3>
+          <div class="price">&euro;40<span class="price-unit">/ hour</span></div>
+          <p class="perk">Every 8th session is free.</p>
+          <p class="fit-line">Choose this if you want every minute on your own weak spots, at your own pace.</p>
+          <ul>
+            <li><span class="check" aria-hidden="true">&#10003;</span> Full session focused on your questions and weak spots</li>
+            <li><span class="check" aria-hidden="true">&#10003;</span> Pace set entirely by you</li>
+            <li><span class="check" aria-hidden="true">&#10003;</span> Flexible scheduling</li>
+            <li><span class="check" aria-hidden="true">&#10003;</span> Ideal for exam-year students or targeted catch-up</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary" style="width:100%;justify-content:center;">Enquire about 1-1</a>
+        </div>
+        <div class="format-card">
+          <h3>Group Grinds</h3>
+          <div class="price">&euro;15<span class="price-unit">/ hour per student</span></div>
+          <p class="fit-line">Bring your own study group — sign up with friends from the same class so sessions can follow what's actually being covered in school as it comes up.</p>
+          <ul>
+            <li><span class="check" aria-hidden="true">&#10003;</span> Groups of up to 5 similar-level students</li>
+            <li><span class="check" aria-hidden="true">&#10003;</span> More affordable per student</li>
+            <li><span class="check" aria-hidden="true">&#10003;</span> Great for regular topic coverage &amp; revision</li>
+            <li><span class="check" aria-hidden="true">&#10003;</span> Study with classmates or friends</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline" style="width:100%;justify-content:center;">Enquire about groups</a>
+        </div>
+      </div>
+      <p class="note">Prices are per student, per hour. Get in touch to check availability and confirm your subject and level.</p>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact">
+        <h2>Ready to get started?</h2>
+        <p>Send a message with your subject, level and what you're looking for, and I'll get back to you to arrange a free intro chat.</p>
+        <div class="btn-row">
+          <a href="mailto:luke@lukedoesmaths.ie?subject=Grinds%20Enquiry" class="btn btn-primary">Email me</a>
+          <a href="https://wa.me/353864002436?text=Hi%20Luke%2C%20I%27m%20interested%20in%20maths%20grinds!" class="btn btn-outline">Message on WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>&copy; <span id="year">2026</span> LukeDoesMaths. Online Maths, Applied Maths &amp; Physics grinds.</p>
+    <div class="flinks">
+      <a href="mailto:luke@lukedoesmaths.ie">luke@lukedoesmaths.ie</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  document.querySelectorAll('.nav-links a').forEach(function(a){
+    a.addEventListener('click', function(){ document.getElementById('navToggle').checked = false; });
+  });
+</script>
+
+</body>
+</html>

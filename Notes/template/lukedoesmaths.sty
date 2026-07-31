@@ -1,0 +1,284 @@
+% ============================================================
+%  lukedoesmaths.sty
+%  Notes template style for LukeDoesMaths (Maths / Applied Maths / Physics
+%  grinds for the Irish Leaving Certificate)
+%
+%  Compiles with pdfLaTeX, XeLaTeX or LuaLaTeX -- no configuration needed,
+%  so it works with Overleaf's default (pdfLaTeX) out of the box.
+%
+%  Brand fonts: Petrona (display/headings) + Work Sans (body).
+%  Both are free Google Fonts and can only be used by XeLaTeX/LuaLaTeX,
+%  which pick them up automatically when they are installed. Otherwise
+%  (and always under pdfLaTeX) the file falls back to Latin Modern, so
+%  the layout and colours are identical on every engine.
+%
+%  Note that Overleaf does not have Petrona/Work Sans installed, so on
+%  Overleaf all three engines produce the same Latin Modern output.
+% ============================================================
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{lukedoesmaths}[2026/07/31 LukeDoesMaths notes template]
+
+\RequirePackage{iftex}
+
+% \ifldm@unicode is true on the engines that can use fontspec (and hence
+% real OpenType brand fonts); false on pdfLaTeX, which takes the Type 1
+% Latin Modern route instead.
+\newif\ifldm@unicode
+\ifxetex\ldm@unicodetrue\fi
+\ifluatex\ldm@unicodetrue\fi
+
+% ---------- Page geometry ----------
+\RequirePackage[a4paper,margin=2.4cm,headheight=34pt,footskip=1.2cm]{geometry}
+
+% ---------- Brand colours (from DESIGN.md) ----------
+\RequirePackage{xcolor}
+\definecolor{ldmTerracotta}{HTML}{BF4D28}
+\definecolor{ldmTerracottaDeep}{HTML}{A8421F}
+\definecolor{ldmTerracottaLight}{HTML}{F4E7D7}
+\definecolor{ldmTeal}{HTML}{20443F}
+\definecolor{ldmGold}{HTML}{C98A26}
+\definecolor{ldmGoldDeep}{HTML}{8F6119}
+\definecolor{ldmGoldLight}{HTML}{DDA63F}
+\definecolor{ldmInk}{HTML}{26221D}
+\definecolor{ldmMuted}{HTML}{6F695F}
+\definecolor{ldmCream}{HTML}{FDFBF6}
+\definecolor{ldmCreamSoft}{HTML}{F4EEE1}
+\definecolor{ldmSand}{HTML}{E5DCC7}
+
+% ---------- Fonts ----------
+\ifldm@unicode
+  % ----- XeLaTeX / LuaLaTeX: real OpenType fonts -----
+  \RequirePackage{fontspec}
+  \RequirePackage{unicode-math}
+
+  % fontspec does not enable TeX's input ligatures by default, so "---"
+  % and "--" would come out as literal runs of hyphens (pdfLaTeX gets
+  % them right automatically). Enable them for every family defined
+  % below so all three engines render dashes and quotes identically.
+  \defaultfontfeatures{Ligatures=TeX}
+
+  % Fallbacks reference the Latin Modern OTF files by name (found via
+  % kpathsea, i.e. wherever TeX Live puts them) rather than by relying on
+  % an OS-level font-name search, so they resolve on any TeX Live install
+  % -- including Overleaf -- even when no fonts are installed as "system"
+  % fonts.
+  \IfFontExistsTF{Petrona}
+    {\newfontfamily\ldmDisplayFont{Petrona}[UprightFont=*-SemiBold,ItalicFont=*-SemiBoldItalic]}
+    {\newfontfamily\ldmDisplayFont{lmroman10-regular}[
+      Extension=.otf,UprightFont=*,
+      BoldFont=lmroman10-bold,ItalicFont=lmroman10-italic,
+      BoldItalicFont=lmroman10-bolditalic]}
+
+  \IfFontExistsTF{Work Sans}
+    {\setmainfont{Work Sans}[UprightFont=*-Regular,BoldFont=*-Bold,ItalicFont=*-Italic]}
+    {\setmainfont{lmsans10-regular}[
+      Extension=.otf,UprightFont=*,
+      BoldFont=lmsans10-bold,ItalicFont=lmsans10-oblique,
+      BoldItalicFont=lmsans10-boldoblique]}
+
+  \IfFontExistsTF{Petrona}
+    {\setsansfont{Petrona}[UprightFont=*-SemiBold,ItalicFont=*-SemiBoldItalic]}
+    {\setsansfont{lmroman10-regular}[
+      Extension=.otf,UprightFont=*,
+      BoldFont=lmroman10-bold,ItalicFont=lmroman10-italic,
+      BoldItalicFont=lmroman10-bolditalic]}
+\else
+  % ----- pdfLaTeX: Type 1 Latin Modern -----
+  % lmodern (not the default Computer Modern) is essential: the title page
+  % asks for sizes like \fontsize{32}{38}, which only a scalable font can
+  % supply without "Font shape undefined" substitution warnings.
+  \RequirePackage[T1]{fontenc}
+  \RequirePackage{lmodern}
+  % Body text is sans (matching Work Sans' role); headings are the roman
+  % face (matching Petrona's role).
+  \renewcommand{\familydefault}{\sfdefault}
+  \newcommand{\ldmDisplayFont}{\rmfamily}
+\fi
+
+\newcommand{\ldmDisplay}[1]{{\ldmDisplayFont\color{ldmTeal}#1}}
+\newcommand{\ldmLogoMark}{{\ldmDisplayFont\itshape\color{ldmTerracotta}Luke\color{ldmTeal}DoesMaths}}
+
+\color{ldmInk}
+
+% ---------- Maths / Physics packages ----------
+\RequirePackage{amsmath}
+% Under XeLaTeX/LuaLaTeX, amssymb must NOT be loaded: unicode-math already
+% provides every symbol it defines (\eth, \mho, \Bbbk, ...) and loading
+% both raises "Command \eth already defined". Under pdfLaTeX there is no
+% unicode-math, so amssymb is required to get those symbols at all.
+\ifldm@unicode\else
+  \RequirePackage{amssymb}
+\fi
+\RequirePackage{physics}
+\RequirePackage[per-mode=symbol]{siunitx}
+
+% physics and siunitx both define \qty. siunitx detects the clash and
+% silently declines to define its own, which would leave \qty meaning
+% physics' auto-sized brackets -- so \qty{9.81}{\metre\per\second\squared}
+% would render as nonsense. For notes with units in them the siunitx
+% meaning is the one we want, so restore it (siunitx's own recommended
+% fix). Use physics' \pqty / \qty*-style bracket macros if needed.
+\AtBeginDocument{\RenewCommandCopy\qty\SI}
+
+% ---------- Lists ----------
+\RequirePackage{enumitem}
+\setlist[itemize,1]{label={\color{ldmGoldDeep}\textbullet},leftmargin=1.4em}
+\setlist[enumerate,1]{label={\color{ldmTerracottaDeep}\arabic*.},leftmargin=1.6em}
+
+% ---------- Section styling ----------
+\RequirePackage{titlesec}
+
+\titleformat{\section}
+  {\ldmDisplayFont\Large\bfseries\color{ldmTeal}}
+  {\thesection}{0.6em}{}
+  [{\color{ldmSand}\titlerule[1.2pt]}]
+
+\titleformat{\subsection}
+  {\ldmDisplayFont\large\bfseries\color{ldmTerracottaDeep}}
+  {\thesubsection}{0.5em}{}
+
+\titleformat{\subsubsection}
+  {\normalfont\bfseries\color{ldmMuted}\upshape}
+  {\thesubsubsection}{0.5em}{}
+
+\titlespacing*{\section}{0pt}{1.6em}{0.8em}
+\titlespacing*{\subsection}{0pt}{1.2em}{0.5em}
+
+% ---------- Header / footer ----------
+\RequirePackage{etoolbox}
+\RequirePackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.6pt}
+\renewcommand{\footrulewidth}{0pt}
+% Colour the header rule. fancyhdr's \headrule contains no \color to
+% patch, so define it outright rather than relying on \patchcmd (which
+% fails silently and leaves a black rule).
+\renewcommand{\headrule}{%
+  {\color{ldmSand}\hrule\@height\headrulewidth\@width\headwidth}%
+  \vskip-\headrulewidth}
+\fancyhead[L]{\small\ldmLogoMark}
+\fancyhead[R]{\small\color{ldmMuted}\@ldmSubject\ \textbullet\ \@ldmTopic}
+\fancyfoot[L]{\footnotesize\color{ldmMuted}Maths \textbullet\ Applied Maths \textbullet\ Physics --- Leaving Cert Notes}
+\fancyfoot[R]{\footnotesize\color{ldmMuted}Page \thepage}
+
+\fancypagestyle{ldmtitle}{
+  \fancyhf{}
+  \renewcommand{\headrulewidth}{0pt}
+  \fancyfoot[C]{\small\color{ldmMuted}lukedoesmaths.com}
+}
+
+% ---------- Title-page metadata commands ----------
+\newcommand{\@ldmSubject}{Mathematics}
+\newcommand{\@ldmTopic}{Topic}
+\newcommand{\@ldmLevel}{Higher Level}
+
+\newcommand{\subject}[1]{\renewcommand{\@ldmSubject}{#1}}
+\newcommand{\topic}[1]{\renewcommand{\@ldmTopic}{#1}}
+\newcommand{\level}[1]{\renewcommand{\@ldmLevel}{#1}}
+
+\newcommand{\ldmtitlepage}{%
+  \thispagestyle{ldmtitle}
+  \begin{center}
+    \vspace*{0.4cm}
+    {\ldmDisplayFont\itshape\fontsize{22}{26}\selectfont
+      \color{ldmTerracotta}Luke\color{ldmTeal}DoesMaths\par}
+    \vspace{0.15cm}
+    {\small\color{ldmMuted}\MakeUppercase{Leaving Certificate Notes}\par}
+
+    \vspace{2.2cm}
+    {\color{ldmSand}\rule{0.55\textwidth}{0.8pt}}
+    \vspace{1.4cm}
+
+    {\ldmDisplayFont\bfseries\fontsize{15}{18}\selectfont
+      \color{ldmGoldDeep}\MakeUppercase{\@ldmSubject\ --- \@ldmLevel}\par}
+    \vspace{0.6cm}
+    {\ldmDisplayFont\bfseries\fontsize{32}{38}\selectfont
+      \color{ldmTeal}\@ldmTopic\par}
+
+    \vspace{1.4cm}
+    {\color{ldmSand}\rule{0.55\textwidth}{0.8pt}}
+    \vspace{2cm}
+
+    \begin{tabular}{@{}p{3.2cm}p{6cm}@{}}
+      {\small\color{ldmMuted}Prepared by} & {\small\color{ldmInk} Luke Johnston} \\[0.6em]
+      {\small\color{ldmMuted}Student name} & \makebox[6cm]{\hrulefill} \\[1.2em]
+      {\small\color{ldmMuted}Date} & \makebox[6cm]{\hrulefill}
+    \end{tabular}
+  \end{center}
+  \clearpage
+}
+
+% ---------- Boxes: tcolorbox ----------
+% Only skins (for "enhanced" and "borderline west") and breakable are
+% actually used. Loading [most] instead would drag in the listings stack,
+% which additionally needs listingsutf8 under pdfLaTeX -- a dependency
+% this template has no use for.
+\RequirePackage[skins,breakable]{tcolorbox}
+
+% Definition box (chalkboard teal)
+\newtcolorbox{ldmdefinition}[1][Definition]{
+  enhanced, breakable,
+  colback=ldmCreamSoft, colframe=ldmTeal,
+  boxrule=0.9pt, left=8pt, right=8pt, top=6pt, bottom=6pt,
+  arc=2pt, outer arc=2pt,
+  fonttitle=\bfseries\color{white},
+  colbacktitle=ldmTeal,
+  title={\small\MakeUppercase{#1}},
+  attach boxed title to top left={yshift=-2mm, xshift=4mm},
+  boxed title style={boxrule=0pt, arc=1pt, colback=ldmTeal},
+}
+
+% Worked example box (terracotta)
+\newtcolorbox{ldmexample}[1][Worked Example]{
+  enhanced, breakable,
+  colback=white, colframe=ldmTerracotta,
+  boxrule=0.9pt, left=8pt, right=8pt, top=6pt, bottom=6pt,
+  arc=2pt, outer arc=2pt,
+  fonttitle=\bfseries\color{white},
+  colbacktitle=ldmTerracotta,
+  title={\small\MakeUppercase{#1}},
+  attach boxed title to top left={yshift=-2mm, xshift=4mm},
+  boxed title style={boxrule=0pt, arc=1pt, colback=ldmTerracotta},
+}
+
+% Exam tip box (burnished gold)
+\newtcolorbox{ldmexamtip}[1][Exam Tip]{
+  enhanced, breakable,
+  colback=ldmTerracottaLight!35!white, colframe=ldmGold,
+  boxrule=0.9pt, left=8pt, right=8pt, top=6pt, bottom=6pt,
+  arc=2pt, outer arc=2pt,
+  fonttitle=\bfseries\color{ldmInk},
+  colbacktitle=ldmGoldLight,
+  title={\small\MakeUppercase{#1}},
+  attach boxed title to top left={yshift=-2mm, xshift=4mm},
+  boxed title style={boxrule=0pt, arc=1pt, colback=ldmGoldLight},
+}
+
+% Key formula highlight (centred, teal border, cream fill)
+\newtcolorbox{ldmformula}{
+  enhanced,
+  colback=ldmCream, colframe=ldmTeal,
+  boxrule=1pt, arc=3pt, outer arc=3pt,
+  halign=center, valign=center,
+  left=10pt, right=10pt, top=8pt, bottom=8pt,
+}
+
+% End-of-topic summary
+\newtcolorbox{ldmsummary}[1][Key Points]{
+  enhanced, breakable,
+  colback=ldmTeal!6!white, colframe=ldmTeal,
+  boxrule=0pt, borderline west={3pt}{0pt}{ldmTeal},
+  left=10pt, right=8pt, top=6pt, bottom=6pt,
+  % colbacktitle defaults to colframe (teal), so the title text must be
+  % white here -- teal-on-teal renders the heading invisible.
+  colbacktitle=ldmTeal, coltitle=white,
+  fonttitle=\bfseries,
+  title={\MakeUppercase{#1}},
+}
+
+% ---------- hyperref (load last) ----------
+\RequirePackage[colorlinks=true,linkcolor=ldmTerracottaDeep,urlcolor=ldmTerracottaDeep,citecolor=ldmTeal]{hyperref}
+
+\endinput
