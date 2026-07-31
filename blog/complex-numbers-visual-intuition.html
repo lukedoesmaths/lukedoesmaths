@@ -111,6 +111,14 @@
   .diagram figcaption{margin-top:10px;font-size:0.78rem;color:var(--muted);text-align:center;}
   svg text{font-family:'Work Sans',system-ui,sans-serif;}
 
+  /* DESMOS EMBED (interactive supplement to a diagram, not a replacement) */
+  .desmos-embed{background:var(--bg-soft);border:1px solid var(--border);border-radius:var(--radius);
+    padding:16px;margin:28px auto;max-width:640px;}
+  .desmos-embed iframe{width:100%;min-height:420px;border:0;border-radius:6px;display:block;}
+  .desmos-embed figcaption{margin-top:10px;font-size:0.78rem;color:var(--muted);text-align:center;}
+  .desmos-embed .demo-label{display:block;font-weight:700;font-size:0.78rem;color:var(--rust-deep);
+    text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px;text-align:center;}
+
   /* WORKED ALGEBRA DEMO (mirrors the ldmexample terracotta convention from the LaTeX notes system) */
   .demo{background:#fff;border:1px solid var(--border);border-left:4px solid var(--rust);
     border-radius:var(--radius);padding:22px 26px;margin:24px 0;}
@@ -266,6 +274,14 @@
         <figcaption>z&#8321; and z&#8322; as vectors; their sum is the parallelogram's diagonal.</figcaption>
       </figure>
 
+      <figure class="desmos-embed">
+        <span class="demo-label">Try it yourself</span>
+        <iframe src="https://www.desmos.com/calculator/pkkgizrq05"
+          title="Interactive Desmos graph: adding two complex numbers as vectors"
+          loading="lazy" allowfullscreen></iframe>
+        <figcaption>Drag z&#8321; and z&#8322; to see their sum update in real time.</figcaption>
+      </figure>
+
       <h2>4. Multiplication is rotate + scale</h2>
       <p>Write a complex number in modulus&ndash;argument (polar) form, \(z = r(\cos\theta + i\sin\theta)\), where \(r=|z|\) is its distance from the origin and \(\theta=\arg z\) is its angle from the positive real axis. Multiplying two complex numbers multiplies their moduli and <em>adds</em> their arguments:</p>
       <p>\[ z_1 z_2 = r_1 r_2\big(\cos(\theta_1+\theta_2) + i\sin(\theta_1+\theta_2)\big) \]</p>
@@ -293,6 +309,14 @@
           <text x="150" y="15" font-size="12" fill="#6f695f" text-anchor="middle">rotate by &theta; = arg(w), scale by |w|</text>
         </svg>
         <figcaption>Multiplying z by w rotates it by w's argument and scales it by w's modulus.</figcaption>
+      </figure>
+
+      <figure class="desmos-embed">
+        <span class="demo-label">Try it yourself</span>
+        <iframe src="https://www.desmos.com/calculator/xvdkpxf5pl"
+          title="Interactive Desmos graph: multiplying a complex number by w rotates and scales it"
+          loading="lazy" allowfullscreen></iframe>
+        <figcaption>Drag the points or sliders to see multiplication rotate and scale z in real time.</figcaption>
       </figure>
 
       <div class="demo">
