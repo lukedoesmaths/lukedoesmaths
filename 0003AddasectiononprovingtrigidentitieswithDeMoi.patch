@@ -1,0 +1,87 @@
+From ced64fc088f918330d30675ce056a4bf3b2faf1f Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Fri, 31 Jul 2026 12:38:36 +0000
+Subject: [PATCH 3/3] Add a section on proving trig identities with De Moivre's
+ theorem
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Adds section 6, deriving cos3θ = 4cos³θ - 3cosθ and sin3θ = 3sinθ -
+4sin³θ by expanding (cosθ+isinθ)³ with the Binomial Theorem and
+comparing real/imaginary parts to cos3θ+isin3θ — a standard LC
+Higher Level technique built directly on De Moivre's theorem from
+section 5. Renumbers the conjugate root theorem and fundamental
+theorem of algebra sections (6→7, 7→8) and fixes the internal
+cross-reference, and mentions trig identities in the post's meta
+line and meta description.
+
+Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_018vfDmGbUETokYVrrgvpv1J
+---
+ blog/complex-numbers-visual-intuition.html | 28 ++++++++++++++++++----
+ 1 file changed, 23 insertions(+), 5 deletions(-)
+
+diff --git a/blog/complex-numbers-visual-intuition.html b/blog/complex-numbers-visual-intuition.html
+index f53c97a..deffa39 100644
+--- a/blog/complex-numbers-visual-intuition.html
++++ b/blog/complex-numbers-visual-intuition.html
+@@ -4,7 +4,7 @@
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Complex Numbers: Why the Scary Name Is a Lie | LukeDoesMaths</title>
+-<meta name="description" content="A visual, on-syllabus introduction to LC Higher Level complex numbers: Argand diagrams, vector addition, rotation and scaling, De Moivre's theorem, the conjugate root theorem, and the fundamental theorem of algebra.">
++<meta name="description" content="A visual, on-syllabus introduction to LC Higher Level complex numbers: Argand diagrams, vector addition, rotation and scaling, De Moivre's theorem, trig identities, the conjugate root theorem, and the fundamental theorem of algebra.">
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link href="https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,500;0,600;0,700;1,600&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+ <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+@@ -174,7 +174,7 @@
+       <header class="post-head">
+         <span class="eyebrow">Complex Numbers</span>
+         <h1>Why the Scary Name Is a Lie</h1>
+-        <p class="post-meta">LC Higher Level &middot; Argand diagrams &middot; De Moivre's theorem &middot; conjugate roots &middot; fundamental theorem of algebra</p>
++        <p class="post-meta">LC Higher Level &middot; Argand diagrams &middot; De Moivre's theorem &middot; trig identities &middot; conjugate roots &middot; fundamental theorem of algebra</p>
+       </header>
+ 
+       <p class="lead">"Complex" is a bad name. It suggests these numbers are harder than the ones you already know. They're not &mdash; they're the exact same numbers, plus one new idea: a second axis, running perpendicular to the real number line. Once you see that, most of the syllabus results in this topic stop looking like separate things to memorise and start looking like the same picture, viewed from different angles.</p>
+@@ -367,7 +367,25 @@
+         <p>which is exactly the statement for \(n=k+1\). By induction, it holds for every positive integer \(n\).</p>
+       </div>
+ 
+-      <h2>6. The conjugate root theorem</h2>
++      <h2>6. Using De Moivre's theorem to prove trig identities</h2>
++      <p>De Moivre's theorem isn't only a picture of rotation &mdash; expand \((\cos\theta+i\sin\theta)^n\) with the Binomial Theorem and compare it to \(\cos n\theta+i\sin n\theta\), and the real and imaginary parts hand you formulas for \(\cos n\theta\) and \(\sin n\theta\) purely in terms of \(\cos\theta\) and \(\sin\theta\). This is a standard exam technique in its own right, and it's really the same rotation picture from section 5, just read off in coordinates instead of drawn.</p>
++
++      <div class="demo">
++        <span class="demo-label">Worked algebra &mdash; cos 3&theta; and sin 3&theta; via De Moivre's theorem</span>
++        <p>By De Moivre's theorem with \(n=3\):</p>
++        <p>\[(\cos\theta+i\sin\theta)^3 = \cos3\theta+i\sin3\theta\]</p>
++        <p>Expand the left-hand side with the Binomial Theorem:</p>
++        <p>\[(\cos\theta+i\sin\theta)^3 = \cos^3\theta+3\cos^2\theta(i\sin\theta)+3\cos\theta(i\sin\theta)^2+(i\sin\theta)^3\]</p>
++        <p>\[=(\cos^3\theta-3\cos\theta\sin^2\theta)+i(3\cos^2\theta\sin\theta-\sin^3\theta)\]</p>
++        <p>Equating this to \(\cos3\theta+i\sin3\theta\) and matching real parts with real, imaginary with imaginary:</p>
++        <p>\[\cos3\theta=\cos^3\theta-3\cos\theta\sin^2\theta, \qquad \sin3\theta=3\cos^2\theta\sin\theta-\sin^3\theta\]</p>
++        <p>Substitute \(\sin^2\theta=1-\cos^2\theta\) into the first, and \(\cos^2\theta=1-\sin^2\theta\) into the second, then simplify:</p>
++        <p>\[\cos3\theta=\cos^3\theta-3\cos\theta(1-\cos^2\theta)=4\cos^3\theta-3\cos\theta\]</p>
++        <p>\[\sin3\theta=3(1-\sin^2\theta)\sin\theta-\sin^3\theta=3\sin\theta-4\sin^3\theta\]</p>
++        <p>Same method, any \(n\): expand, split into real and imaginary parts, simplify. The picture (section 5) tells you <em>why</em> this works; the algebra is what actually gets you the identity on the page.</p>
++      </div>
++
++      <h2>7. The conjugate root theorem</h2>
+       <p>The conjugate of \(z=a+bi\) is \(\bar z = a-bi\) &mdash; geometrically, \(z\) reflected across the real axis. Suppose \(p(z)\) is a polynomial with <em>real</em> coefficients and \(p(z)=0\). Taking the conjugate of both sides, every real coefficient survives untouched (conjugating a real number does nothing) &mdash; only \(z\) itself gets reflected &mdash; giving \(p(\bar z)=\overline{p(z)}=\bar 0=0\). So \(\bar z\) is a root too: for a real polynomial, non-real roots always come in mirror-image pairs across the real axis.</p>
+ 
+       <figure class="diagram">
+@@ -386,8 +404,8 @@
+         <figcaption>Non-real roots of a real polynomial mirror each other across the real axis.</figcaption>
+       </figure>
+ 
+-      <h2>7. The fundamental theorem of algebra</h2>
+-      <p>Put the two pictures together. The fundamental theorem of algebra says a degree-\(n\) polynomial has exactly \(n\) roots in the complex numbers, counted with multiplicity. For a real polynomial, non-real roots pair up by reflection (section 6); De Moivre's picture (section 5) says raising a unit-modulus number to successive powers walks it evenly around the circle. Put together: the \(n\) solutions of \(z^n=1\) sit at \(n\) evenly spaced points around the unit circle, each one \(360\degree/n\) further round than the last &mdash; a direct visual consequence of the rotation picture.</p>
++      <h2>8. The fundamental theorem of algebra</h2>
++      <p>Put the two pictures together. The fundamental theorem of algebra says a degree-\(n\) polynomial has exactly \(n\) roots in the complex numbers, counted with multiplicity. For a real polynomial, non-real roots pair up by reflection (section 7); De Moivre's picture (section 5) says raising a unit-modulus number to successive powers walks it evenly around the circle. Put together: the \(n\) solutions of \(z^n=1\) sit at \(n\) evenly spaced points around the unit circle, each one \(360\degree/n\) further round than the last &mdash; a direct visual consequence of the rotation picture.</p>
+ 
+       <figure class="diagram">
+         <svg viewBox="0 0 300 260" role="img" aria-labelledby="dsc7">
+-- 
+2.43.0
+
