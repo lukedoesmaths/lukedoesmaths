@@ -253,6 +253,8 @@ A single centered container (max-width 1120px, 24px side padding) holds every se
 
 **Documented exception:** "How it works" (`#how`) intentionally breaks the standard rhythm (48px/32px instead of 80px/56px). Its content is four short one-line steps; the generous default padding read as excess whitespace around that little text, so its padding was deliberately tightened rather than padding the copy out to fill the space.
 
+**Documented exception:** Blog post bodies (`.prose`) cap at 720px, narrower than the standard 1120px container. Long-form reading needs a shorter line length than a marketing section; the 1120px container stays for the post's header/footer chrome, but the article text itself steps down inside it.
+
 ## Elevation & Depth
 
 Soft, paper-like lift: a single diffuse shadow (`0 6px 18px rgba(38,34,29,0.09)`) shared by the hero card, subject cards on hover, and the pricing cards. Depth is used sparingly and only on surfaces that visually "sit above" the page — flat sections (nav, footer, section backgrounds) carry no shadow at all; separation there comes from background tone shifts (cream vs. soft-cream) instead.
@@ -288,6 +290,13 @@ Two radius scales doing two different jobs: a tight 3px on every interactive con
 ### Navigation
 - **Style:** Sticky, translucent-blurred cream header; uppercase Chalkboard Teal labels with Warm Terracotta hover. The header carries a single CTA — a Chalkboard Teal outline "Get in touch" button linking straight to WhatsApp — which inverts to a solid teal fill on hover. The header deliberately holds no filled terracotta CTA: with one action in the bar, the outline treatment keeps the accent rare and reserves terracotta for in-page conversion points.
 - **Mobile:** A native disclosure (no JS dependency) drops the nav into a full-width panel below the header; the trigger is a plain hamburger glyph with a visible focus ring.
+- **Current-page state:** On non-homepage pages (e.g. blog pages), the nav link for the current page is permanently Warm Terracotta rather than only on hover, with `aria-current="page"` — the one place plain (non-deep) terracotta text is used outside a hover/large-text context, since it's a small, deliberate, singular exception rather than a recurring pattern.
+
+### Blog Post Elements
+- **Post Card** (blog listing grid): Same family as the Subject/Format cards — white background, 1px Sand Border, 10px radius — but Paper Lift only on hover, never permanent. Posts are browsable content to skim, not a chosen product like a pricing tier, so they don't carry the pricing cards' permanent-lift weight.
+- **Diagram Figure:** Soft Cream background, 1px Sand Border, 10px radius, capped at 440px wide and centered, holding one hand-authored inline SVG plus a caption. Diagram SVGs use the palette's literal hex values directly (not `var()`) since they're static illustrations, not interactive UI needing live theme response. Caption text reuses the existing `caption` type token (0.76rem, Muted) rather than introducing a new size.
+- **Worked-Algebra Box** (`.demo`): White background, 4px Warm Terracotta Deep left border, 10px radius. This mirrors the `ldmexample` terracotta convention from the LaTeX student-notes system (`Notes/template/lukedoesmaths.sty`) — terracotta already means "worked example" in the brand's other medium, so the web picks up the same color-to-meaning mapping rather than inventing a new one. The label line uses Terracotta Deep (never plain terracotta) per the Read-It-Or-Fill-It Rule.
+- **Closing Callout Box** (`.callout`): Soft Cream background, 4px Chalkboard Teal left border, 10px radius. Mirrors the LaTeX system's `ldmsummary` teal side-rule ("key points" / reminder convention) — used here for the one closing note per post that visual intuition supports but doesn't replace algebraic practice.
 
 ## Do's and Don'ts
 
